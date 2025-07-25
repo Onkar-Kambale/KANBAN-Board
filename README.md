@@ -18,10 +18,10 @@ https://onkar-kambale.github.io/KANBAN-Board/
 
 ## 📂 Project Structure
 
-index.html # Main HTML structure
-├── style.css # Glassmorphism UI styles
-├── script.js # Kanban logic (drag & drop, storage, etc.)
-└── README.md # Documentation
+ index.html # Main HTML structure
+ style.css # Glassmorphism UI styles
+ script.js # Kanban logic (drag & drop, storage, etc.)
+ README.md # Documentation
 
 
 ---
