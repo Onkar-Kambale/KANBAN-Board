@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vanilla Kanban</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="app-header glass">
+    <h1>Kanban Board</h1>
+
+    <div class="header-actions">
+      <button id="addColumnBtn" class="btn primary">+ Column</button>
+      <button id="resetBtn" class="btn danger outline">Reset</button>
+      <button id="themeToggle" class="btn outline">🌙</button>
+    </div>
+  </header>
+
+  <section class="board-progress glass">
+    <div class="progress-label">
+      <span>Overall Progress</span>
+      <span id="overallProgressText">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div id="overallProgressBar" class="progress-fill" style="width:0%"></div>
+    </div>
+  </section>
+
+  <main id="board" class="board"></main>
+
+  <!-- Column Template -->
+  <template id="columnTemplate">
+    <section class="column glass" draggable="true">
+      <header class="column-header">
+        <h2 class="column-title" contenteditable="true"></h2>
+        <div class="col-actions">
+          <button class="btn xs outline add-task">+ Task</button>
+          <button class="btn xs danger outline delete-column">✕</button>
+        </div>
+      </header>
+
+      <div class="column-progress">
+        <div class="progress-label">
+          <span class="column-progress-text">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="tasks" data-dropzone="tasks"></div>
+    </section>
+  </template>
+
+  <!-- Task Template -->
+  <template id="taskTemplate">
+    <article class="task glass soft" draggable="true">
+      <header class="task-header">
+        <h3 class="task-title"></h3>
+        <div class="task-actions">
+          <button class="btn xs outline edit-task">✎</button>
+          <button class="btn xs danger outline delete-task">✕</button>
+        </div>
+      </header>
+      <p class="task-desc"></p>
+      <footer class="task-footer">
+        <span class="badge due"></span>
+        <div class="tags"></div>
+      </footer>
+    </article>
+  </template>
+
+  <!-- Modal -->
+  <dialog id="taskModal" class="glass">
+    <form id="taskForm" method="dialog">
+      <h2 id="modalTitle">New Task</h2>
+
+      <label>
+        Title
+        <input type="text" id="taskTitle" required />
+      </label>
+
+      <label>
+        Description
+        <textarea id="taskDesc" rows="3"></textarea>
+      </label>
+
+      <label>
+        Due date
+        <input type="date" id="taskDue" />
+      </label>
+
+      <label>
+        Tags (comma separated)
+        <input type="text" id="taskTags" placeholder="bug, urgent" />
+      </label>
+
+      <menu class="modal-actions">
+        <button type="reset" class="btn outline" id="cancelModal">Cancel</button>
+        <button type="submit" class="btn primary" id="saveTaskBtn">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
